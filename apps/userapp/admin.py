@@ -4,34 +4,29 @@ from .models import CustomUser
 
 class CustomUserAdmin(BaseUserAdmin):
     model = CustomUser
-    add_form = None
-    form = None
 
+    # Define which fields to display in the list view
     list_display = ('email', 'first_name', 'last_name', 'role', 'is_active', 'is_staff')
     list_filter = ('is_active', 'is_staff', 'role')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('-date_joined',)
     filter_horizontal = ()
 
+    # Define how the fields should be displayed in the edit form
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'role')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        ('Important dates', {'fields': ('last_login',)}),  # Removed 'date_joined'
     )
 
+    # Define how the fields should be displayed when adding a new user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'role', 'is_active', 'is_staff')}
         ),
     )
-
-    def get_form(self, request, obj=None, **kwargs):
-        # Customize form fields for add and change views
-        if obj is None:
-            return super().get_form(request, obj, **kwargs)
-        return super().get_form(request, obj, **kwargs)
 
     def save_model(self, request, obj, form, change):
         if not change:
