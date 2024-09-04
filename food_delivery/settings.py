@@ -39,8 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework',
+    'rest_framework_simplejwt',
+    
+    # custom apps 
     'apps.userapp.apps.UserappConfig',
+    'apps.restaurant.apps.RestaurantConfig',
 ]
+
+AUTH_USER_MODEL = 'userapp.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
