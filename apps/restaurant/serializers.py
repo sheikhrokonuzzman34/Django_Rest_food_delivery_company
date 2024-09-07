@@ -4,17 +4,17 @@ from apps.restaurant.models import *
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'owner']
+        fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'restaurant']
+        fields = '__all__'
 
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = ['id', 'name', 'description', 'price', 'category']
+        fields = '__all__'
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
