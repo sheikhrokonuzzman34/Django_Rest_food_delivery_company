@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RestaurantCreateView, CategoryCreateView, MenuItemCreateView, OrderCreateView
+from apps.restaurant.views import *
 
 urlpatterns = [
     path('restaurants/', RestaurantCreateView.as_view(), name='restaurant-create'),
