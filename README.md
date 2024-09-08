@@ -83,8 +83,8 @@ python manage.py test
 - **Body:** 
   ```json
   {
-  "name": "Pizza House",
-  "location": "123 Main St, City"
+  "name": "Pasta Palace",
+  "owner": 1
   }
   ```
 
@@ -102,8 +102,8 @@ python manage.py test
 - **Body:** 
   ```json
   {
-  "name": "Main Course",
-  "restaurant": 1
+  "name": "TOP_10",
+  "restaurant": 2
   }
 
   ```
