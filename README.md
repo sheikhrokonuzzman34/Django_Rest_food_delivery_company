@@ -67,8 +67,8 @@ python manage.py test
 - **Body:**  useremail and password
   ```json
   {
-  "email": "user@example.com",
-  "password": "password123",
+  "email": "sumon@example.com",
+  "password": "password123"
   }
 - **Response:**
   - Status Code: 200 OK
