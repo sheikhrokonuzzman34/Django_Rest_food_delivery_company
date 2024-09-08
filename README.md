@@ -52,10 +52,11 @@ python manage.py test
 - **Body:**  useremail and password
   ```json
   {
-  "email": "user@example.com",
-  "password": "password123",
-  "first_name": "Sabbir",
-  "last_name": "Hosain",
+  "email": "sumon@example.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "role": "employee",  
+    "password": "password123"
   }
 - **Response:**
   - Status Code: 200 OK
@@ -66,8 +67,8 @@ python manage.py test
 - **Body:**  useremail and password
   ```json
   {
-  "email": "user@example.com",
-  "password": "password123",
+  "email": "sumon@example.com",
+  "password": "password123"
   }
 - **Response:**
   - Status Code: 200 OK
@@ -76,7 +77,7 @@ python manage.py test
 ## Restaurant Management Endpoints
   
 ### Create Restaurant
-- **URL:** `POST /restaurant/restaurants`
+- **URL:** `POST /restaurant/restaurants/`
 - **Description:** Create a new restaurant.
 - **Authentication:** Required (Bearer token)
 - **Headers:** Authorization Bearer token
