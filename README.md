@@ -39,8 +39,8 @@ python manage.py test
 ##  Super user
 -
   ```text
-  useremail : 'admin@gamil.com'
-  password : '123456'
+  useremail : admin@gmail.com
+  password : 123456
   ```
 
 
