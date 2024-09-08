@@ -124,9 +124,10 @@ python manage.py test
 - **Body:** 
   ```json
   {
-  "name": "Margherita Pizza",
-  "price": 9.99,
-  "category": 1
+    "name": "Caesar Salad",
+    "description": "Fresh romaine lettuce with Caesar dressing, croutons, and parmesan cheese.",
+    "price": "8.99",
+    "category": 1
   }
 
 ## Order Management Endpoints
@@ -139,14 +140,14 @@ python manage.py test
 - **Body:** 
   ```json
   {
-  "payment_info": "Dummy payment info",
-  "total_amount": "250.32",
-  "items": [
-    {
-      "product": 3,
-      "quantity": 3
-    }
-  ]
+    "restaurant": 1,
+    "item_details": [
+        {"item": 1, "quantity": 1},
+        {"item": 2, "quantity": 1}
+    ],
+    "total_amount": "26.97",
+    "status": "pending",
+    "payment_method": "card"
   }
 
   ```
