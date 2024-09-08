@@ -77,7 +77,7 @@ python manage.py test
 ## Restaurant Management Endpoints
   
 ### Create Restaurant
-- **URL:** `POST /restaurant/restaurants`
+- **URL:** `POST /restaurant/restaurants/`
 - **Description:** Create a new restaurant.
 - **Authentication:** Required (Bearer token)
 - **Headers:** Authorization Bearer token
