@@ -32,7 +32,7 @@ class Order(models.Model):
         (PAID, 'Paid'),
     ]
 
-    customer = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     items = models.ManyToManyField(MenuItem, through='OrderItem')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
