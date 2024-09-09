@@ -141,11 +141,11 @@ python manage.py test
   ```json
   {
     "restaurant": 1,
-    "item_details": [
-        {"item": 1, "quantity": 1},
-        {"item": 2, "quantity": 1}
+    "items": [
+        {"item_id": 1, "quantity": 2},
+        {"item_id": 2, "quantity": 1}
     ],
-    "total_amount": "26.97",
+    "total_amount": "37.50",
     "status": "pending",
     "payment_method": "card"
   }
