@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from apps.restaurant.models import *
+from django.contrib.auth import get_user_model
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,19 +27,21 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ['id', 'item', 'item_id', 'quantity']
 
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['item'] = MenuItemSerializer(instance.item).data
-        return ret
-
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, source='orderitem_set')
+    customer_id = serializers.IntegerField(source='customer.id', read_only=True)
 
     class Meta:
         model = Order
-        fields = ['id', 'customer', 'restaurant', 'items', 'total_amount', 'status', 'payment_method']
+        fields = ['id', 'customer_id', 'restaurant', 'items', 'total_amount', 'status', 'payment_method']
 
     def create(self, validated_data):
+        request = self.context.get('request', None)
+        if request and hasattr(request, 'user'):
+            validated_data['customer'] = request.user
+        else:
+            raise serializers.ValidationError({"customer": "Customer information is missing."})
+
         items_data = validated_data.pop('orderitem_set')
         order = Order.objects.create(**validated_data)
         
@@ -50,15 +53,18 @@ class OrderSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         items_data = validated_data.pop('orderitem_set', None)
         
-        # Update the order fields
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
 
         if items_data is not None:
-            # Clear existing items and create new ones
             instance.orderitem_set.all().delete()
             for item_data in items_data:
                 OrderItem.objects.create(order=instance, **item_data)
 
         return instance
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['customer'] = instance.customer.id
+        return representation
